@@ -18,26 +18,25 @@ def lagrange4squares(n):
     largestSquare = largest ** 2
     remainder = n - largestSquare
     retList = []
-    
-    while largestSquare >= 2:
-        i = 1
-        while largestSquare * i < n:
-            j = 0
-            currentLargestSquare = largestSquare
-            while j < 4 -i: 
-                while(sum(retList) + currentLargestSquare <= n and len(retList) <= 3):
-                    retList.append(currentLargestSquare)
-                    j += 1
-                if n - sum(retList) != 0 and len(retList) == 4:
-                    break
-                elif n - sum(retList) <= (3 - j):
-                    return(addZerosAndOnes(retList, n))
-                currentLargestSquare = ((currentLargestSquare ** .5) - 1) ** 2
-            i += 1
-            largestSquare = (largest - 1) ** 2
+    minimum = math.floor((n/4) ** .5)   # Smallest that the largest squared number could possibly be
+                                        # ie for 100, smallest would be 25 
+
+    while largestSquare >= minimum:
+        j = 0
+        while j < 4: 
+            while(sum(retList) + largestSquare <= n):   
+                retList.append(largestSquare)
+                j += 1
+            if n - sum(retList) != 0 and len(retList) == 4:
+                break
+            elif n - sum(retList) <= (4 - j):
+                return(addZerosAndOnes(retList, n))
+            largestSquare = ((largestSquare ** .5) - 1) ** 2
+        largestSquare = (largest - 1) ** 2  # Resets initial highest number in set
+        largest -= 1    # Keeps track of current highest number
         retList = []
     
-    return ("Not found")        # Should never excecute, but just in case LaGrange was wrong...
+    return ("Not found")    # Should never excecute, but just in case LaGrange is wrong...
 
 while(True):
     print(str(lagrange4squares(int(input()))))
