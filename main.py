@@ -1,4 +1,15 @@
 import math
+import time
+import random
+
+def testEfficiency(power):
+    
+    testNum = math.floor(random.random() * (10 ** power)) + 3 # Must be > 2
+    start = time.clock()
+    lagrange4squares(testNum)
+    end = time.clock()
+
+    return end - start
 
 def addZerosAndOnes(xs, n, listLen=4):
     while(len(xs) < listLen):
@@ -37,6 +48,17 @@ def lagrange4squares(n):
         retList = []
     
     return ("Not found")    # Should never excecute, but just in case LaGrange is wrong...
+
+# powerTimes = []
+# for pow in range(14):
+#     trialTimes = []
+#     for trialNum in range(5):
+#         trialTimes.append(testEfficiency(pow + 1))
+#
+#     print("Finished trial " + str(pow))
+#     powerTimes.append(trialTimes)
+# 
+# print(powerTimes)
 
 while(True):
     print(str(lagrange4squares(int(input()))))
