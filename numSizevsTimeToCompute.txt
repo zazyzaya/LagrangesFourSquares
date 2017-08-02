@@ -1,3 +1,7 @@
+The time it took to compute 5 random numbers of varying power 
+It doesn't really grind to a halt until numbers surpass 10^11
+
+
 10^x|  Time (in seconds)
     |	1			2			3			4			5
 ----+------------------------------------------------------------------------------------------------------------------------
