@@ -1,4 +1,5 @@
 import math
+sqrt = math.sqrt
 import time
 import random
 
@@ -25,12 +26,12 @@ def lagrange4squares(n):
     # represented as the sum of four integer squares. ie: p = a0 ^ 2 + a1 ^ 2 + a2 ^ 2 + a3 ^ 2
     # https://en.wikipedia.org/wiki/Lagrange%27s_four-square_theorem
 
-    largest = math.floor(n ** (1/2))
+    largest = math.floor(sqrt(n))
     largestSquare = largest ** 2
     remainder = n - largestSquare
     retList = []
-    minimum = math.floor((n/4) ** .5)   # Smallest that the largest squared number could possibly be
-                                        # ie for 100, smallest would be 25 
+    minimum = math.floor(sqrt(n/4))    # Smallest that the largest squared number could possibly be
+                                            # ie for 100, smallest would be 25 
 
     while largestSquare >= minimum:
         j = 0
@@ -42,7 +43,7 @@ def lagrange4squares(n):
                 break
             elif n - sum(retList) <= (4 - j):
                 return(addZerosAndOnes(retList, n))
-            largestSquare = ((largestSquare ** .5) - 1) ** 2
+            largestSquare = (sqrt(largestSquare) - 1) ** 2
         largestSquare = (largest - 1) ** 2  # Resets initial highest number in set
         largest -= 1    # Keeps track of current highest number
         retList = []
